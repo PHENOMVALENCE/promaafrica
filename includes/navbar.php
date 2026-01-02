@@ -2,7 +2,7 @@
     <div class="container">
         <div class="nav-left">
             <div class="logo">
-                <a href="index.php"><img src="assets/images/1.png" alt="Proma Africa Logo"></a>
+                <a href="index.php"><img src="assets/images/2.png" alt="Proma Africa Logo"></a>
             </div>
             <div class="site-title">
                 <h1>Proma Africa</h1>
@@ -17,6 +17,7 @@
                 <a href="index.php">Home</a>
                 <a href="about.php">About Us</a>
                 <a href="services.php">Services</a>
+                <a href="sales.php">Property Sales</a>
                 <a href="news.php">News & Blogs</a>
                 <a href="contact.php">Contact</a>
             </div>
@@ -31,20 +32,55 @@
         top: 0;
         left: 0;
         width: 100%;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
-        padding: 15px 20px;
+        padding: 10px 20px;
     }
 
     .navbar .container {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
     }
 
     .logo img {
-        height: 80px;
+        height: 60px;
+        width: auto;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    .logo:hover img {
+        transform: scale(1.05);
+    }
+
+    .site-title h1 {
+        font-size: 1.5rem;
+        margin: 0;
+        color: #333;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .site-title p {
+        font-size: 0.85rem;
+        margin: 0;
+        color: #666;
     }
 
     .hamburger-menu {
@@ -52,9 +88,19 @@
     }
 
     .menu-icon {
-        font-size: 44px;
+        font-size: 32px;
         cursor: pointer;
         color: #f6ae01;
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+    }
+
+    .menu-icon:hover {
+        transform: scale(1.1);
     }
 
     .menu-links {
@@ -85,6 +131,45 @@
 
     .menu-links a:hover {
         color: #f6ae01;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 8px 15px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .site-title h1 {
+            font-size: 1.2rem;
+        }
+
+        .site-title p {
+            font-size: 0.75rem;
+        }
+
+        .menu-icon {
+            font-size: 28px;
+            width: 36px;
+            height: 36px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .nav-left {
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 45px;
+        }
+
+        .site-title h1 {
+            font-size: 1rem;
+        }
     }
 </style>
 

@@ -22,35 +22,33 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <title>Proma Africa - Expert Property Survey, Land Services & Real Estate Solutions in Tanzania</title>
+    <title>Proma Africa - Leading Property Survey & Real Estate Consultancy in Tanzania</title>
 
     <meta name="description"
-        content="Proma Africa: Your trusted partner in Tanzania for professional Property Survey, land surveying & administration, real estate services, resettlement consultancy, and more. Serving corporations, individuals, and government organizations across Africa.">
+        content="Proma Africa: A trusted leader in Property Survey, land administration, real estate services, and resettlement consultancy. Serving corporations, individuals, and government organizations across Tanzania and Africa.">
 
     <meta name="keywords"
-        content="Property Survey Tanzania, land surveying Tanzania, real estate Tanzania, resettlement consultancy Africa, land administration Tanzania, asset management Tanzania, property management Tanzania, ESG consultancy Tanzania, GIS services Tanzania">
+        content="Proma Africa, Property Survey Tanzania, land surveying Tanzania, real estate Tanzania, resettlement consultancy Africa, land administration Tanzania, asset management Tanzania, property management Tanzania">
 
     <meta name="author" content="Proma Africa">
 
-    <meta property="og:title" content="Proma Africa - Expert Property & Real Estate Solutions in Tanzania">
+    <meta property="og:title" content="Proma Africa - Leading Property Survey & Real Estate Consultancy">
     <meta property="og:description"
-        content="Your trusted partner in Tanzania for professional Property Survey, land surveying & administration, real estate services, resettlement consultancy, and more.">
+        content="A trusted leader in Property Survey, land administration, real estate services, and resettlement consultancy across Tanzania and Africa.">
     <meta property="og:image" content="assets/images/2.png">
     <meta property="og:url" content="https://promaafrica.com/index.php">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_TZ">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Proma Africa - Expert Property & Real Estate Solutions in Tanzania">
+    <meta name="twitter:title" content="Proma Africa - Leading Property Survey & Real Estate Consultancy">
     <meta name="twitter:description"
-        content="Your trusted partner in Tanzania for professional Property Survey, land surveying & administration, real estate services, resettlement consultancy, and more.">
+        content="A trusted leader in Property Survey, land administration, real estate services, and resettlement consultancy across Tanzania and Africa.">
     <meta name="twitter:image" content="assets/images/2.png">
     <link rel="canonical" href="https://promaafrica.com/index.php">
     <link rel="stylesheet" href="assets/css/stylesss.css">
     <link rel="stylesheet" href="assets/css/text-justify-updates.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Add AOS library for scroll animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Add Swiper for modern sliders -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <style>
 /* Base styles */
@@ -89,22 +87,155 @@
   --spacing-2xl: 40px;
   --spacing-3xl: 60px;
   --container-padding: 20px;
-  --header-height: 70px; /* Added for consistency with sales-styles */
-   font-family: "Gill Sans MT", sans-serif;
-}
-
-
-
-/* Properties Showcase Section */
-.properties-showcase {
-  padding: var(--spacing-3xl) 0;
-  background-color: var(--bg-light);
+  --header-height: 70px;
+  font-family: "Gill Sans MT", sans-serif;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--container-padding); /* Adjusted for left/right padding */
+  padding: 0 var(--container-padding);
+}
+
+/* Company Hero Section */
+.company-hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--bg-white);
+  margin-top: var(--header-height);
+  overflow: hidden;
+}
+
+.company-hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('assets/images/b7.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+.company-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  padding: var(--spacing-3xl) var(--container-padding);
+}
+
+.company-hero .hero-main-text {
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bg-white);
+  max-width: 95%;
+  margin: 0 auto var(--spacing-3xl);
+  letter-spacing: 1.5px;
+  text-transform: none;
+  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.8);
+  font-family: 'Gill Sans MT', 'Segoe UI', sans-serif;
+  text-align: center;
+  overflow: visible;
+  word-wrap: break-word;
+}
+
+.company-hero .hero-main-text .hero-accent {
+  color: var(--primary-color);
+  font-weight: 700;
+  text-shadow: 
+    0 0 15px rgba(246, 174, 1, 0.6),
+    0 0 25px rgba(246, 174, 1, 0.4),
+    2px 2px 8px rgba(0, 0, 0, 0.8);
+  position: relative;
+  display: inline-block;
+  padding: 0 4px;
+  transition: all 0.3s ease;
+}
+
+.company-hero .hero-main-text .hero-accent:hover {
+  transform: translateY(-2px);
+  text-shadow: 
+    0 0 20px rgba(246, 174, 1, 0.8),
+    0 0 30px rgba(246, 174, 1, 0.5),
+    2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.company-hero .hero-main-text .hero-accent::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  opacity: 0.6;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s ease;
+}
+
+.company-hero:hover .hero-main-text .hero-accent::before {
+  transform: scaleX(1);
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin-top: var(--spacing-2xl);
+}
+
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 15px 30px;
+  border-radius: var(--border-radius-xl);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  border: 2px solid;
+}
+
+.btn-hero.btn-primary {
+  background: var(--primary-color);
+  color: var(--bg-white);
+  border-color: var(--primary-color);
+}
+
+.btn-hero.btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(246, 174, 1, 0.4);
+}
+
+.btn-hero.btn-secondary {
+  background: transparent;
+  color: var(--bg-white);
+  border-color: var(--bg-white);
+}
+
+.btn-hero.btn-secondary:hover {
+  background: var(--bg-white);
+  color: var(--text-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Properties Showcase Section */
+.properties-showcase {
+  padding: var(--spacing-3xl) 0;
+  background-color: var(--bg-light);
 }
 
 .properties-showcase h2 {
@@ -117,7 +248,7 @@
 
 .properties-grid-locations {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-lg);
 }
 
@@ -127,8 +258,8 @@
   box-shadow: var(--shadow-md);
   overflow: hidden;
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-  display: flex; /* Added for better content alignment if needed */
-  flex-direction: column; /* Added for better content alignment if needed */
+  display: flex;
+  flex-direction: column;
 }
 
 .property-location-card:hover {
@@ -136,20 +267,16 @@
   box-shadow: var(--shadow-lg);
 }
 
-.property-location-card-image {
-  flex-shrink: 0; /* Prevents image from shrinking if content is long */
-}
-
 .property-location-card-image img {
   width: 100%;
-  height: 200px; /* Fixed height for uniformity */
-  object-fit: cover; /* Ensure images cover the area without distortion */
+  height: 200px;
+  object-fit: cover;
   display: block;
 }
 
 .property-location-card-content {
   padding: var(--spacing-md);
-  flex-grow: 1; /* Allows content to take up remaining space */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
@@ -166,13 +293,13 @@
   color: var(--text-medium);
   margin-bottom: var(--spacing-md);
   line-height: 1.6;
-  flex-grow: 1; /* Allows paragraph to grow if other content is short */
+  flex-grow: 1;
 }
 
 .btn-view-properties {
   display: inline-flex;
   align-items: center;
-  justify-content: center; /* Centered button text */
+  justify-content: center;
   padding: var(--spacing-sm) var(--spacing-md);
   background-color: var(--primary-color);
   color: var(--bg-white);
@@ -181,7 +308,7 @@
   border-radius: var(--border-radius-sm);
   text-decoration: none;
   transition: background-color var(--transition-fast);
-  margin-top: auto; /* Pushes the button to the bottom of the card content */
+  margin-top: auto;
 }
 
 .btn-view-properties i {
@@ -195,184 +322,54 @@
 /* Responsive Design */
 @media (max-width: 992px) {
   .properties-grid-locations {
-    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .properties-grid-locations {
-    grid-template-columns: 1fr; /* One column on small screens */
+  .company-hero {
+    min-height: 70vh;
   }
 
-  /* No need for margin-bottom on property-location-card as gap handles it */
-  /* .property-location-card {
-    margin-bottom: var(--spacing-md);
-  } */
+  .company-hero .hero-main-text {
+    font-size: clamp(1.4rem, 4.5vw, 2rem);
+    padding: 0 15px;
+    margin-bottom: var(--spacing-2xl);
+    letter-spacing: 0.8px;
+    white-space: normal;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  .company-hero .hero-main-text .hero-accent {
+    padding: 0 2px;
+  }
+
+  .company-hero .hero-main-text .hero-accent::before {
+    height: 1.5px;
+    bottom: -1px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-sm);
+    padding: 0 20px;
+  }
+
+  .btn-hero {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .properties-grid-locations {
+    grid-template-columns: 1fr;
+  }
 
   .property-location-card-image img {
-    height: 220px; /* Slightly taller images on smaller screens, adjusted for better balance */
+    height: 220px;
   }
 }
-/* Styling for the What Sets Us Apart section with smaller cards in one line */
-.what-sets-us-apart {
-    background: linear-gradient(180deg, #f9f9f9 0%, #ffffff 100%);
-    padding: 3rem 0;
-}
-
-.container {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-.what-sets-us-apart h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    color: #2c2c2e;
-    margin-bottom: 2.5rem;
-    letter-spacing: 0.03em;
-    
-    position: relative;
-}
-.what-sets-us-apart h2 {
-    text-transform: none; /* Override any uppercase transformation */
-}
-
-.what-sets-us-apart h2::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 2px;
-    background: #8b5cf6;
-    margin: 0.5rem auto 0;
-}
-
-.apart-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 1rem;
-    overflow-x: auto;
-    padding-bottom: 0.75rem;
-    scrollbar-width: thin;
-    scrollbar-color: #8b5cf6 #e5e7eb;
-}
-
-.apart-grid::-webkit-scrollbar {
-    height: 6px;
-}
-
-.apart-grid::-webkit-scrollbar-track {
-    background: #e5e7eb;
-}
-
-.apart-grid::-webkit-scrollbar-thumb {
-    background: #8b5cf6;
-    border-radius: 3px;
-}
-
-.apart-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    flex: 0 0 220px;
-    min-width: 220px;
-}
-
-.apart-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
-}
-
-.apart-card-image img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    display: block;
-    filter: brightness(0.95);
-}
-
-.apart-card-icon-overlay {
-    position: absolute;
-    top: 95px;
-    left: 0.75rem;
-    background: linear-gradient(45deg, #6b7280, #9ca3af);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 1rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-    border: 1.5px solid #ffffff;
-}
-
-.apart-card-content {
-    padding: 1rem;
-    background: #ffffff;
-}
-
-.apart-card-content h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.02em;
-}
-
-.apart-card-content p {
-    text-align: justify;
-    font-family: 'Lora', serif;
-    font-size: 0.85rem;
-    color: #4b5563;
-    line-height: 1.5;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .what-sets-us-apart h2 {
-        font-size: 1.75rem;
-    }
-
-    .apart-card-image img {
-        height: 100px;
-    }
-
-    .apart-card-icon-overlay {
-        top: 80px;
-        width: 35px;
-        height: 35px;
-        font-size: 0.9rem;
-    }
-
-    .apart-card-content {
-        padding: 0.75rem;
-    }
-
-    .apart-card {
-        flex: 0 0 200px;
-        min-width: 200px;
-    }
-
-    .apart-card-content h3 {
-        font-size: 1rem;
-    }
-
-    .apart-card-content p {
-        font-size: 0.8rem;
-    }
-}
-
-/* Ensure fonts are loaded */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lora:wght@400;500&display=swap');
     </style>
 </head>
 
@@ -388,79 +385,32 @@
     <!-- Progress Bar -->
     <div class="progress-bar"></div>
 
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-left">
-                <div class="logo">
-                    <a href="index.php"><img src="assets/images/2.png" alt="Proma Africa Logo"></a>
-                </div>
-                <div class="site-title">
-                    <h1>Proma Africa</h1>
-                    <p></p>
-                </div>
-            </div>
-            <div class="hamburger-menu">
-                <div class="menu-icon" id="menuIcon">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <div class="menu-links" id="menuLinks">
-                    <a href="index.php" class="active" >Home</a>
-                    <a href="about.php">About Us</a>
-                    <a href="services.php">Services</a>
-                    <a href="news.php" class="news-link">News & Blogs</a>
-                    <a href="contact.php">Contact</a>
-                    <a href="sales.php">Property For Sale</a>
-                    <a href="#" class="close-btn" id="closeBtn"><i class="fas fa-times"></i></a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include 'includes/navbar.php'; ?>
 
-    <!-- Hero Section - Redesigned to match sales page -->
-    <section class="hero-section">
-        <div class="hero-background" style="background-image: url('assets/images/b7.jpg');"></div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-award"></i>
-                <span>Tanzania's Premier Real Estate</span>
-            </div>
-            
-            <h1>Discover Your Dream Property in Tanzania Mainland &<span class="highlight"> Zanzibar</span></h1>
-            
-            <div class="hero-buttons">
-                <a href="#properties-showcase" class="btn-hero btn-primary">
-                    <i class="fas fa-search"></i>
-                    Explore Properties
+    <!-- Company Hero Section -->
+    <section class="company-hero">
+        <div class="company-hero-background"></div>
+        <div class="company-hero-content">
+            <h1 class="hero-main-text" data-aos="fade-up">
+                Transforming <span class="hero-accent">property</span>, <span class="hero-accent">land</span> & <span class="hero-accent">real estate</span> consultancy across <span class="hero-accent">Africa</span>.
+            </h1>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
+                <a href="about.php" class="btn-hero btn-primary">
+                    <i class="fas fa-info-circle"></i>
+                    About Us
                 </a>
                 <a href="contact.php" class="btn-hero btn-secondary">
                     <i class="fas fa-phone"></i>
-                    Contact Expert
+                    Get in Contact
                 </a>
-            </div>
-            
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Properties</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">20+</div>
-                    <div class="stat-label">Locations</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">150+</div>
-                    <div class="stat-label">Happy Clients</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">5+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
             </div>
         </div>
     </section>
 
+
+
     <!-- New Section: What Sets Us Apart -->
-    <section id="what-sets-us-apart" class="what-sets-us-apart" >
+    <section id="what-sets-us-apart" class="what-sets-us-apart">
         <div class="container">
             <h2 data-aos="fade-up">What makes us different</h2>
             <div class="apart-grid">
@@ -488,7 +438,6 @@
                         <p>We provide continuous support after the sale, assisting with everything from relocation to investment management, ensuring you can leverage your new property right away.</p>
                     </div>
                 </div>
-              
                 <div class="apart-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="apart-card-image">
                         <img src="assets/images/w3.jpg" alt="Personalised Property Search" loading="lazy">
@@ -529,71 +478,53 @@
         </div>
     </section>
 
-   <!-- <section id="about" class="about" data-aos="fade-up" data-aos-duration="1000">
+    <!-- New Section: Available Properties -->
+    <section id="properties-showcase" class="properties-showcase">
         <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Company Overview</h3>
-                    <p style="text-align: justify;">Proma Africa is a multifaceted company specialized in Real estate services, (Sale/Purcahse/Lease/Rental), Property Survey, Land administration, Resettlement consultancy. Our clients include Corporations (Banks, Investors, Real Estate Developers, Insurers, Brokers), Private Individuals, Partnerships, all other Businesses, Farming Concerns, Heritage, Government and Institutional Organizations.</p>
-                   
+            <h2 data-aos="fade-up">Available Properties</h2>
+            <div class="properties-grid-locations">
+                <!-- Tanzania Mainland -->
+                <div class="property-location-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="property-location-card-image">
+                        <img src="assets/images/b5.jpg" alt="Properties in Tanzania Mainland" loading="lazy">
+                    </div>
+                    <div class="property-location-card-content">
+                        <h3>Tanzania Mainland</h3>
+                        <p>Explore a wide range of properties including residential, commercial, and land plots across Tanzania Mainland.</p>
+                        <a href="sales.php?location=Dar%20es%20Salaam" class="btn-view-properties">
+                            View Mainland Properties <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Zanzibar -->
+                <div class="property-location-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="property-location-card-image">
+                        <img src="assets/images/b10.jpg" alt="Properties in Zanzibar" loading="lazy">
+                    </div>
+                    <div class="property-location-card-content">
+                        <h3>Zanzibar</h3>
+                        <p>Discover exclusive properties and investment opportunities in the beautiful islands of Zanzibar.</p>
+                        <a href="sales.php?location=Zanzibar" class="btn-view-properties">
+                            View Zanzibar Properties <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Plots and Farms -->
+                <div class="property-location-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="property-location-card-image">
+                        <img src="assets/images/pf.jpg" alt="Plots and Farms" loading="lazy">
+                    </div>
+                    <div class="property-location-card-content">
+                        <h3>Plots and Farms</h3>
+                        <p>Invest in fertile agricultural land, farming estates, and spacious plots for development across Tanzania.</p>
+                        <a href="sales.php?property_type=Land" class="btn-view-properties">
+                            View Plots & Farms <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
--->
-   
-
-    <!-- New Section: Available Properties -->
-<section id="properties-showcase" class="properties-showcase">
-    <div class="container">
-        <h2 data-aos="fade-up">Available Properties</h2>
-        <div class="properties-grid-locations">
-
-            <!-- Zanzibar -->
-            <div class="property-location-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="property-location-card-image">
-                    <img src="assets/images/b10.jpg" alt="Properties in Zanzibar" loading="lazy">
-                </div>
-                <div class="property-location-card-content">
-                    <h3>Zanzibar</h3>
-                    <p>Discover exclusive properties and investment opportunities in the beautiful islands of Zanzibar.</p>
-                    <a href="sales.php?location=Zanzibar" class="btn-view-properties">
-                        View Zanzibar Properties <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Plots and Farms -->
-            <div class="property-location-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="property-location-card-image">
-                    <img src="assets/images/pf.jpg" alt="Plots and Farms" loading="lazy">
-                </div>
-                <div class="property-location-card-content">
-                    <h3>Plots and Farms</h3>
-                    <p>Invest in fertile agricultural land, farming estates, and spacious plots for development across Tanzania.</p>
-                    <a href="sales.php?property_type=Land" class="btn-view-properties">
-                        View Plots & Farms <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-             <!-- Tanzania Mainland -->
-            <div class="property-location-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="property-location-card-image">
-                    <img src="assets/images/b5.jpg" alt="Properties in Tanzania Mainland" loading="lazy">
-                </div>
-                <div class="property-location-card-content">
-                    <h3>Tanzania Mainland</h3>
-                    <p>Explore a wide range of properties including residential, commercial, and land plots across Tanzania Mainland.</p>
-                    <a href="sales.php?location=Dar%20es%20Salaam" class="btn-view-properties">
-                        View Mainland Properties <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</section>
 
     <section id="services" class="services">
         <div class="container">
@@ -605,13 +536,6 @@
                     <p>Professional advice on estimation of asset monetary worth for personal, private institutions and government use - including machinery, equipment, land, brand survey, intellectual property, technology, and all types of properties.</p>
                     <a href="services.php#survey" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-              <!--  <div class="service-card" data-aos="fade-up" data-aos-delay="600">
-                    <i class="fas fa-home"></i>
-                    <h3>Plots, Farms & Houses</h3>
-                    <p>Transparent and professional services for buying and selling residential/commercial plots, buildings,
-                        agricultural land, and investment properties.</p>
-                    <a href="services.php#realestate" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div> -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <i class="fas fa-file-contract"></i>
                     <h3>Land Administration</h3>
@@ -627,12 +551,11 @@
                     <a href="services.php#asset" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-    <i class="fas fa-building"></i>
-    <h3>Property Investment</h3>
-    <p>Strategic guidance and opportunities for investing in residential, commercial, and industrial properties — tailored for individuals, businesses, and institutional investors seeking sustainable growth and long-term value.</p>
-    <a href="services.php#property-investment" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-</div>
-
+                    <i class="fas fa-building"></i>
+                    <h3>Property Investment</h3>
+                    <p>Strategic guidance and opportunities for investing in residential, commercial, and industrial properties — tailored for individuals, businesses, and institutional investors seeking sustainable growth and long-term value.</p>
+                    <a href="services.php#property-investment" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="500">
                     <i class="fas fa-building"></i>
                     <h3>Property Management</h3>
@@ -640,7 +563,6 @@
                         lease management, and maintenance services.</p>
                     <a href="services.php#property" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                
                 <div class="service-card" data-aos="fade-up" data-aos-delay="700">
                     <i class="fas fa-users"></i>
                     <h3>Resettlement and Livelihood Restoration</h3>
@@ -659,6 +581,7 @@
         </div>
     </section>
 
+    <!-- Partners Section -->
     <section class="partners-section" data-aos="fade-up">
         <div class="container">
             <h2>Our Esteemed Stakeholders</h2>
@@ -668,6 +591,7 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="contact-simplified" data-aos="fade-up">
         <div class="container">
             <h2>Get In Touch</h2>
@@ -683,7 +607,7 @@
                 </div>
                 <div class="info-item" data-aos="fade-up" data-aos-delay="300">
                     <i class="fas fa-map-marker-alt"></i>
-                    <p>Dar es salaam, Tanzania</p>
+                    <p>Dar es Salaam, Tanzania</p>
                 </div>
             </div>
         </div>
@@ -698,38 +622,7 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/images/1.png" alt="Proma Africa Logo">
-                    <p>Your trusted partner in Property Survey and real estate services.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="about.php">About Us</a></li>
-                        <li><a href="services.php">Services</a></li>
-                        <li><a href="news.php">News & Blogs</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                        <li><a href="sales.php">Properties For Sale</a></li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter">
-                    <h4>Newsletter</h4>
-                    <p>Subscribe to our newsletter for the latest updates</p>
-                    <form class="newsletter-form" action="subscribe.php" method="POST">
-                        <input type="email" name="email" placeholder="Your Email Address" required>
-                        <button type="submit">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <?php echo date('Y'); ?> Proma Africa. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <?php include 'includes/footer.php'; ?>
 
     <!-- Add AOS library for scroll animations -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -776,7 +669,7 @@
                 cursor.classList.remove('active');
             });
 
-            const interactiveElements = document.querySelectorAll('a, button, .service-card, .info-item, .apart-card'); // Added .apart-card
+            const interactiveElements = document.querySelectorAll('a, button, .service-card, .info-item, .value-card, .feature-card');
             interactiveElements.forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     cursor.classList.add('active');
@@ -792,28 +685,30 @@
         const menuLinks = document.getElementById('menuLinks');
         const closeBtn = document.getElementById('closeBtn');
 
-        menuIcon.addEventListener('click', (e) => {
-            e.preventDefault();
-            menuLinks.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        });
+        if (menuIcon && menuLinks && closeBtn) {
+            menuIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                menuLinks.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
 
-        closeBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            menuLinks.classList.remove('show');
-            document.body.style.overflow = '';
-        });
-
-        document.addEventListener('click', (event) => {
-            if (!menuIcon.contains(event.target) && !menuLinks.contains(event.target) && menuLinks.classList.contains('show')) {
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
                 menuLinks.classList.remove('show');
                 document.body.style.overflow = '';
-            }
-        });
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!menuIcon.contains(event.target) && !menuLinks.contains(event.target) && menuLinks.classList.contains('show')) {
+                    menuLinks.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
 
         // Partners data
         const partnersData = [
-                    { logo: "assets/images/p7.jpeg", name: "Wizara ya Ardhi, Nyumba na Maeneeleo ya Makazi" },
+            { logo: "assets/images/p7.jpeg", name: "Wizara ya Ardhi, Nyumba na Maeneeleo ya Makazi" },
             { logo: "assets/images/p1.jpeg", name: "BRELA" },
             { logo: "assets/images/p3.jpeg", name: "TRA" },
             { logo: "assets/images/p2.jpeg", name: "Tanzania Investment Centre" },
@@ -826,6 +721,8 @@
         function loadPartners() {
             const partnersGrid = document.getElementById('partnersGrid');
             const isMobile = window.innerWidth < 768;
+
+            if (!partnersGrid) return;
 
             partnersGrid.innerHTML = '';
 
@@ -872,7 +769,10 @@
                 window.requestAnimationFrame(() => {
                     const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                     const scrolled = (window.scrollY / windowHeight) * 100;
-                    document.querySelector('.progress-bar').style.width = `${scrolled}%`;
+                    const progressBar = document.querySelector('.progress-bar');
+                    if (progressBar) {
+                        progressBar.style.width = `${scrolled}%`;
+                    }
                     ticking = false;
                 });
                 ticking = true;
@@ -885,22 +785,27 @@
             if (!backToTopTicking) {
                 window.requestAnimationFrame(() => {
                     const backToTop = document.querySelector('.back-to-top');
-                    backToTop.classList.toggle('visible', window.scrollY > 300);
+                    if (backToTop) {
+                        backToTop.classList.toggle('visible', window.scrollY > 300);
+                    }
                     backToTopTicking = false;
                 });
                 backToTopTicking = true;
             }
         });
 
-        document.querySelector('.back-to-top').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        if ('ontouchstart' in window) {
-            document.querySelector('.back-to-top').addEventListener('touchstart', (e) => {
-                e.preventDefault();
+        const backToTopBtn = document.querySelector('.back-to-top');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+
+            if ('ontouchstart' in window) {
+                backToTopBtn.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
         }
 
         // Smooth scroll for anchor links
@@ -911,7 +816,7 @@
                     e.preventDefault();
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        if (menuLinks.classList.contains('show')) {
+                        if (menuLinks && menuLinks.classList.contains('show')) {
                             menuLinks.classList.remove('show');
                             document.body.style.overflow = '';
                         }
@@ -923,27 +828,6 @@
                 }
             });
         });
-
-        // Add passive event listeners for better scroll performance
-        const passiveSupported = () => {
-            let passive = false;
-            try {
-                const options = Object.defineProperty({}, "passive", {
-                    get: function() { passive = true; return true; }
-                });
-                window.addEventListener("test", null, options);
-                window.removeEventListener("test", null, options);
-            } catch(err) {}
-            return passive;
-        };
-
-        const wheelOpt = passiveSupported() ? { passive: true } : false;
-        const wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
-        
-        window.addEventListener('scroll', () => {}, wheelOpt);
-        window.addEventListener(wheelEvent, () => {}, wheelOpt);
-        window.addEventListener('touchstart', () => {}, wheelOpt);
-        window.addEventListener('touchmove', () => {}, wheelOpt);
     </script>
 </body>
 
