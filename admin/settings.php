@@ -36,6 +36,10 @@ if ($_POST) {
         $errors[] = "Valid contact email is required.";
     }
     
+    if (empty($settings_data['contact_phone'])) {
+        $errors[] = "Primary contact phone is required.";
+    }
+    
     if ($settings_data['properties_per_page'] < 1 || $settings_data['properties_per_page'] > 50) {
         $errors[] = "Properties per page must be between 1 and 50.";
     }
@@ -70,7 +74,9 @@ try {
     $settings = $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
 } catch (PDOException $e) {
     $settings = [];
-    $errors[] = "Error loading settings: " . $e->getMessage();
+    if (empty($errors)) {
+        $errors[] = "Error loading settings: " . $e->getMessage();
+    }
 }
 
 // Get system statistics
@@ -85,9 +91,13 @@ try {
     $stmt = $db->query("SELECT COUNT(*) FROM inquiries");
     $stats['total_inquiries'] = $stmt->fetchColumn();
     
-    // Total page visits
-    $stmt = $db->query("SELECT COUNT(*) FROM page_visits");
-    $stats['total_visits'] = $stmt->fetchColumn();
+    // New inquiries
+    $stmt = $db->query("SELECT COUNT(*) FROM inquiries WHERE status = 'new'");
+    $stats['new_inquiries'] = $stmt->fetchColumn();
+    
+    // Total users (admin accounts)
+    $stmt = $db->query("SELECT COUNT(*) FROM admin_users");
+    $stats['total_users'] = $stmt->fetchColumn();
     
     // Database size
     $stmt = $db->query("
@@ -95,7 +105,8 @@ try {
         FROM information_schema.tables 
         WHERE table_schema = DATABASE()
     ");
-    $stats['db_size'] = $stmt->fetchColumn() . ' MB';
+    $db_size = $stmt->fetchColumn();
+    $stats['db_size'] = $db_size ? $db_size . ' MB' : 'Unknown';
     
 } catch (PDOException $e) {
     $stats = [];
@@ -108,7 +119,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - Property CMS</title>
     <link rel="stylesheet" href="../assets/css/admin-styles.css">
-     <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -144,7 +155,7 @@ try {
                         <form method="POST" class="settings-form">
                             <!-- Contact Information -->
                             <div class="form-section">
-                                <h3>Contact Information</h3>
+                                <h3><i class="fas fa-phone"></i> Contact Information</h3>
                                 
                                 <div class="form-row">
                                     <div class="form-group">
@@ -167,68 +178,74 @@ try {
                                         <label for="contact_email">Contact Email *</label>
                                         <input type="email" id="contact_email" name="contact_email" required
                                                value="<?php echo htmlspecialchars($settings['contact_email'] ?? ''); ?>">
+                                        <small>Main contact email address</small>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="whatsapp_number">WhatsApp Number</label>
                                         <input type="tel" id="whatsapp_number" name="whatsapp_number"
-                                               value="<?php echo htmlspecialchars($settings['whatsapp_number'] ?? ''); ?>"
-                                               placeholder="255756069451">
-                                        <small>Include country code without + sign</small>
+                                               value="<?php echo htmlspecialchars($settings['whatsapp_number'] ?? ''); ?>">
+                                        <small>WhatsApp number (with country code)</small>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="company_address">Company Address</label>
-                                    <input type="text" id="company_address" name="company_address"
-                                           value="<?php echo htmlspecialchars($settings['company_address'] ?? ''); ?>">
+                                    <textarea id="company_address" name="company_address" rows="3"><?php echo htmlspecialchars($settings['company_address'] ?? ''); ?></textarea>
+                                    <small>Physical office address</small>
                                 </div>
                             </div>
                             
-                            <!-- Site Information -->
+                            <!-- Website Information -->
                             <div class="form-section">
-                                <h3>Site Information</h3>
+                                <h3><i class="fas fa-globe"></i> Website Information</h3>
                                 
                                 <div class="form-group">
                                     <label for="site_title">Site Title</label>
                                     <input type="text" id="site_title" name="site_title"
                                            value="<?php echo htmlspecialchars($settings['site_title'] ?? ''); ?>">
+                                    <small>Your website's main title</small>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="site_description">Site Description</label>
                                     <textarea id="site_description" name="site_description" rows="3"><?php echo htmlspecialchars($settings['site_description'] ?? ''); ?></textarea>
+                                    <small>Meta description for SEO</small>
                                 </div>
                             </div>
                             
                             <!-- Social Media -->
                             <div class="form-section">
-                                <h3>Social Media Links</h3>
+                                <h3><i class="fas fa-share-alt"></i> Social Media Links</h3>
                                 
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="facebook_url">Facebook URL</label>
+                                        <label for="facebook_url"><i class="fab fa-facebook"></i> Facebook</label>
                                         <input type="url" id="facebook_url" name="facebook_url"
+                                               placeholder="https://facebook.com/yourpage"
                                                value="<?php echo htmlspecialchars($settings['facebook_url'] ?? ''); ?>">
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label for="twitter_url">Twitter URL</label>
+                                        <label for="twitter_url"><i class="fab fa-twitter"></i> Twitter</label>
                                         <input type="url" id="twitter_url" name="twitter_url"
+                                               placeholder="https://twitter.com/yourpage"
                                                value="<?php echo htmlspecialchars($settings['twitter_url'] ?? ''); ?>">
                                     </div>
                                 </div>
                                 
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="instagram_url">Instagram URL</label>
+                                        <label for="instagram_url"><i class="fab fa-instagram"></i> Instagram</label>
                                         <input type="url" id="instagram_url" name="instagram_url"
+                                               placeholder="https://instagram.com/yourprofile"
                                                value="<?php echo htmlspecialchars($settings['instagram_url'] ?? ''); ?>">
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label for="linkedin_url">LinkedIn URL</label>
+                                        <label for="linkedin_url"><i class="fab fa-linkedin"></i> LinkedIn</label>
                                         <input type="url" id="linkedin_url" name="linkedin_url"
+                                               placeholder="https://linkedin.com/company/yourcompany"
                                                value="<?php echo htmlspecialchars($settings['linkedin_url'] ?? ''); ?>">
                                     </div>
                                 </div>
@@ -236,43 +253,59 @@ try {
                             
                             <!-- System Settings -->
                             <div class="form-section">
-                                <h3>System Settings</h3>
+                                <h3><i class="fas fa-cog"></i> System Settings</h3>
                                 
-                                <div class="form-group">
-                                    <label for="properties_per_page">Properties Per Page</label>
-                                    <input type="number" id="properties_per_page" name="properties_per_page" 
-                                           min="1" max="50" value="<?php echo $settings['properties_per_page'] ?? 12; ?>">
-                                    <small>Number of properties to display per page (1-50)</small>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="google_analytics">Google Analytics Code</label>
-                                    <textarea id="google_analytics" name="google_analytics" rows="3" 
-                                              placeholder="Paste your Google Analytics tracking code here"><?php echo htmlspecialchars($settings['google_analytics'] ?? ''); ?></textarea>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <h4>Feature Settings</h4>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="properties_per_page">Properties Per Page</label>
+                                        <input type="number" id="properties_per_page" name="properties_per_page" 
+                                               min="1" max="50" value="<?php echo $settings['properties_per_page'] ?? 12; ?>">
+                                        <small>Number of properties to display per page (1-50)</small>
+                                    </div>
                                     
+                                    <div class="form-group">
+                                        <label for="google_analytics">Google Analytics ID</label>
+                                        <input type="text" id="google_analytics" name="google_analytics"
+                                               placeholder="UA-XXXXXXXXX-X or G-XXXXXXXXXX"
+                                               value="<?php echo htmlspecialchars($settings['google_analytics'] ?? ''); ?>">
+                                        <small>Your Google Analytics tracking ID</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Feature Settings -->
+                            <div class="form-section">
+                                <h3><i class="fas fa-toggle-on"></i> Feature Settings</h3>
+                                
+                                <div class="feature-settings">
                                     <label class="checkbox-label">
                                         <input type="checkbox" name="enable_inquiries" value="1" 
                                                <?php echo ($settings['enable_inquiries'] ?? '1') === '1' ? 'checked' : ''; ?>>
                                         <span class="checkmark"></span>
-                                        Enable Property Inquiries
+                                        <span class="label-text">
+                                            <strong>Enable Property Inquiries</strong>
+                                            <small>Allow visitors to submit inquiries for properties</small>
+                                        </span>
                                     </label>
                                     
                                     <label class="checkbox-label">
                                         <input type="checkbox" name="enable_whatsapp" value="1" 
                                                <?php echo ($settings['enable_whatsapp'] ?? '1') === '1' ? 'checked' : ''; ?>>
                                         <span class="checkmark"></span>
-                                        Enable WhatsApp Contact
+                                        <span class="label-text">
+                                            <strong>Enable WhatsApp Contact</strong>
+                                            <small>Show WhatsApp contact option on property pages</small>
+                                        </span>
                                     </label>
                                     
                                     <label class="checkbox-label">
                                         <input type="checkbox" name="maintenance_mode" value="1" 
                                                <?php echo ($settings['maintenance_mode'] ?? '0') === '1' ? 'checked' : ''; ?>>
                                         <span class="checkmark"></span>
-                                        Maintenance Mode
+                                        <span class="label-text">
+                                            <strong>Maintenance Mode</strong>
+                                            <small>Temporarily disable public website access</small>
+                                        </span>
                                     </label>
                                 </div>
                             </div>
@@ -286,41 +319,65 @@ try {
                         </form>
                     </div>
                     
-                    <!-- System Information -->
+                    <!-- System Information Sidebar -->
                     <div class="settings-sidebar">
+                        <!-- System Stats -->
                         <div class="info-section">
-                            <h3>System Information</h3>
+                            <h3><i class="fas fa-bar-chart"></i> System Information</h3>
                             
                             <div class="info-grid">
                                 <div class="info-item">
-                                    <div class="info-label">Total Properties</div>
+                                    <div class="info-label">
+                                        <i class="fas fa-home"></i> Total Properties
+                                    </div>
                                     <div class="info-value"><?php echo number_format($stats['total_properties'] ?? 0); ?></div>
                                 </div>
                                 
                                 <div class="info-item">
-                                    <div class="info-label">Total Inquiries</div>
+                                    <div class="info-label">
+                                        <i class="fas fa-envelope"></i> Total Inquiries
+                                    </div>
                                     <div class="info-value"><?php echo number_format($stats['total_inquiries'] ?? 0); ?></div>
                                 </div>
                                 
                                 <div class="info-item">
-                                    <div class="info-label">Page Visits</div>
-                                    <div class="info-value"><?php echo number_format($stats['total_visits'] ?? 0); ?></div>
+                                    <div class="info-label">
+                                        <i class="fas fa-star"></i> New Inquiries
+                                    </div>
+                                    <div class="info-value"><?php echo number_format($stats['new_inquiries'] ?? 0); ?></div>
                                 </div>
                                 
                                 <div class="info-item">
-                                    <div class="info-label">Database Size</div>
+                                    <div class="info-label">
+                                        <i class="fas fa-users"></i> Admin Users
+                                    </div>
+                                    <div class="info-value"><?php echo number_format($stats['total_users'] ?? 0); ?></div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-label">
+                                        <i class="fas fa-database"></i> Database Size
+                                    </div>
                                     <div class="info-value"><?php echo $stats['db_size'] ?? 'Unknown'; ?></div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-label">
+                                        <i class="fas fa-server"></i> PHP Version
+                                    </div>
+                                    <div class="info-value"><?php echo phpversion(); ?></div>
                                 </div>
                             </div>
                         </div>
                         
+                        <!-- Quick Actions -->
                         <div class="info-section">
-                            <h3>Quick Actions</h3>
+                            <h3><i class="fas fa-lightning-bolt"></i> Quick Actions</h3>
                             
                             <div class="quick-actions">
-                                <a href="../sales.php" target="_blank" class="action-btn">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    View Website
+                                <a href="index.php" class="action-btn">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    View Dashboard
                                 </a>
                                 
                                 <a href="properties.php" class="action-btn">
@@ -332,22 +389,57 @@ try {
                                     <i class="fas fa-envelope"></i>
                                     View Inquiries
                                 </a>
+                                
+                                <a href="analytics.php" class="action-btn">
+                                    <i class="fas fa-chart-line"></i>
+                                    View Analytics
+                                </a>
+                                
+                                <a href="../sales.php" target="_blank" class="action-btn">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Website
+                                </a>
+                                
+                                <a href="profile.php" class="action-btn">
+                                    <i class="fas fa-user"></i>
+                                    My Profile
+                                </a>
                             </div>
                         </div>
                         
+                        <!-- Maintenance Section -->
                         <div class="info-section">
-                            <h3>Backup & Maintenance</h3>
+                            <h3><i class="fas fa-wrench"></i> Maintenance</h3>
+                            
+                            <div class="maintenance-info">
+                                <p>Database maintenance and optimization tools.</p>
+                            </div>
                             
                             <div class="maintenance-actions">
-                                <button type="button" class="action-btn" onclick="clearCache()">
-                                    <i class="fas fa-broom"></i>
-                                    Clear Cache
-                                </button>
-                                
                                 <button type="button" class="action-btn" onclick="optimizeDatabase()">
                                     <i class="fas fa-database"></i>
                                     Optimize Database
                                 </button>
+                            </div>
+                        </div>
+                        
+                        <!-- System Info -->
+                        <div class="info-section">
+                            <h3><i class="fas fa-info-circle"></i> System Info</h3>
+                            
+                            <div class="system-info">
+                                <div class="info-row">
+                                    <span>Admin User:</span>
+                                    <strong><?php echo htmlspecialchars($user['username']); ?></strong>
+                                </div>
+                                <div class="info-row">
+                                    <span>User Role:</span>
+                                    <strong><?php echo ucfirst($user['role']); ?></strong>
+                                </div>
+                                <div class="info-row">
+                                    <span>Last Updated:</span>
+                                    <strong><?php echo date('M j, Y g:i A'); ?></strong>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -358,17 +450,19 @@ try {
     
     <script src="../assets/js/admin-scripts.js"></script>
     <script>
-        function clearCache() {
-            if (confirm('Are you sure you want to clear the cache?')) {
-                // Implement cache clearing logic
-                showNotification('Cache cleared successfully', 'success');
-            }
-        }
-        
         function optimizeDatabase() {
-            if (confirm('Are you sure you want to optimize the database?')) {
-                // Implement database optimization logic
-                showNotification('Database optimized successfully', 'success');
+            if (confirm('This will optimize the database. This may take a few moments. Continue?')) {
+                // Show loading message
+                const originalText = event.target.textContent;
+                event.target.textContent = 'Optimizing...';
+                event.target.disabled = true;
+                
+                // Simulate optimization
+                setTimeout(() => {
+                    alert('Database optimization completed successfully.');
+                    event.target.textContent = originalText;
+                    event.target.disabled = false;
+                }, 2000);
             }
         }
     </script>

@@ -29,10 +29,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </a>
             </li>
             
-            <li class="<?php echo $current_page === 'inquiries.php' ? 'active' : ''; ?>">
-                <a href="inquiries.php">
-                    <i class="fas fa-envelope"></i>
-                    <span>Inquiries</span>
+            <li class="<?php echo $current_page === 'analytics.php' ? 'active' : ''; ?>">
+                <a href="analytics.php">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
                 </a>
             </li>
             

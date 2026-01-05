@@ -100,7 +100,7 @@
 /* Company Hero Section */
 .company-hero {
   position: relative;
-  min-height: 90vh;
+  min-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,6 +108,7 @@
   color: var(--bg-white);
   margin-top: var(--header-height);
   overflow: hidden;
+  padding: 2rem 0;
 }
 
 .company-hero-background {
@@ -116,34 +117,43 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('assets/images/b7.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  z-index: 0;
+        /* Desktop: full background image with gradient overlay */
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('assets/images/b7.jpg');
+        background-size: cover;
+        background-position: center;
+        /* Avoid fixed attachment (breaks on iOS Safari) */
+        background-attachment: scroll;
+        z-index: 0; /* sits below content by default */
+}
+
+/* mobile fallback image (hidden by default on desktop) */
+.company-hero-fallback {
+    display: none;
 }
 
 .company-hero-content {
   position: relative;
   z-index: 1;
-  max-width: 900px;
-  padding: var(--spacing-3xl) var(--container-padding);
+  max-width: 100%;
+  padding: 1.5rem var(--container-padding);
+  width: 100%;
 }
 
 .company-hero .hero-main-text {
-  font-size: clamp(2rem, 4.2vw, 3.5rem);
-  font-weight: 400;
-  line-height: 1.5;
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.3;
   color: var(--bg-white);
-  max-width: 95%;
-  margin: 0 auto var(--spacing-3xl);
-  letter-spacing: 1.5px;
+  max-width: 100%;
+  margin: 0 auto 1.5rem;
+  letter-spacing: 0.5px;
   text-transform: none;
-  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.8);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
   font-family: 'Gill Sans MT', 'Segoe UI', sans-serif;
   text-align: center;
   overflow: visible;
   word-wrap: break-word;
+  padding: 0 0.5rem;
 }
 
 .company-hero .hero-main-text .hero-accent {
@@ -188,22 +198,23 @@
 .hero-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-md);
+  gap: 0.75rem;
   justify-content: center;
-  margin-top: var(--spacing-2xl);
+  margin-top: 1.5rem;
 }
 
 .btn-hero {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 15px 30px;
+  padding: 12px 24px;
   border-radius: var(--border-radius-xl);
-  font-size: var(--font-size-md);
+  font-size: clamp(0.9rem, 2vw, 1rem);
   font-weight: 600;
   text-decoration: none;
   transition: all var(--transition-normal);
   border: 2px solid;
+  min-height: 44px;
 }
 
 .btn-hero.btn-primary {
@@ -328,16 +339,20 @@
 
 @media (max-width: 768px) {
   .company-hero {
-    min-height: 70vh;
+    min-height: 100vh;
+    padding: 1rem 0;
+  }
+
+  .company-hero-content {
+    padding: 1rem var(--container-padding);
   }
 
   .company-hero .hero-main-text {
-    font-size: clamp(1.4rem, 4.5vw, 2rem);
-    padding: 0 15px;
-    margin-bottom: var(--spacing-2xl);
-    letter-spacing: 0.8px;
-    white-space: normal;
-    line-height: 1.5;
+    font-size: clamp(1.25rem, 6vw, 2rem);
+    padding: 0 0.5rem;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.2px;
+    line-height: 1.25;
     max-width: 100%;
   }
 
@@ -353,24 +368,258 @@
   .hero-buttons {
     flex-direction: column;
     align-items: stretch;
-    gap: var(--spacing-sm);
-    padding: 0 20px;
+    gap: 0.625rem;
+    padding: 0;
+    margin-top: 1.25rem;
   }
 
   .btn-hero {
     width: 100%;
     justify-content: center;
+    padding: 11px 20px;
+    font-size: 0.9rem;
+    min-height: 44px;
   }
   
   .properties-grid-locations {
     grid-template-columns: 1fr;
   }
 
+    .property-location-card-image img {
+        height: 220px;
+    }
+        /* Fix mobile background rendering: show image fallback and keep gradient overlay */
+        .company-hero-fallback {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .company-hero-background {
+            /* only keep the gradient overlay on small screens */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            -webkit-backface-visibility: hidden;
+            -webkit-transform: translateZ(0);
+            z-index: 1;
+            pointer-events: none;
+        }
+}
+
+@media (max-width: 480px) {
+    .company-hero {
+        /* Cover the full mobile viewport reliably */
+        min-height: calc(var(--vh, 1vh) * 100);
+        height: 100svh;
+        padding: 1rem 0;
+    }
+
+  .company-hero-content {
+    padding: 1rem 1rem;
+    max-width: 100%;
+  }
+
+  .company-hero .hero-main-text {
+    font-size: clamp(1.15rem, 5.5vw, 1.75rem);
+    padding: 0;
+    margin-bottom: 1rem;
+    letter-spacing: 0px;
+    line-height: 1.2;
+  }
+
+  .company-hero .hero-main-text .hero-accent::before {
+    height: 1px;
+    bottom: -1px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0;
+  }
+
+  .btn-hero {
+    width: 100%;
+    padding: 11px 16px;
+    font-size: 0.875rem;
+    min-height: 44px;
+    border-radius: 5px;
+  }
+
+  .hero-secondary-text,
+  .hero-description {
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    margin-bottom: 1rem;
+  }
+
+  .properties-grid-locations {
+    grid-template-columns: 1fr;
+    padding: 0 0.5rem;
+  }
+
   .property-location-card-image img {
-    height: 220px;
+    height: 180px;
   }
 }
-    </style>
+                /* Fallback image for mobile devices */
+                .company-hero-fallback {
+                    display: none;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 0;
+                }
+
+            /* iOS Safari fix: hide background div and show inline image on small screens */
+            @supports (-webkit-touch-callout: none) {
+                .company-hero,
+                .company-hero-background {
+                    -webkit-transform: translate3d(0,0,0);
+                    transform: translate3d(0,0,0);
+                    -webkit-backface-visibility: hidden;
+                }
+            }
+
+            @media (max-width: 768px) {
+                /* On small screens use the inline <img> as the visible background
+                   and retain a gradient overlay div above it for contrast. */
+                .company-hero-fallback {
+                    display: block !important;
+                    z-index: 0;
+                }
+
+                .company-hero-background {
+                    /* keep as gradient overlay only (no image) */
+                    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-attachment: scroll;
+                    z-index: 1; /* sits above the img but below content */
+                    pointer-events: none;
+                }
+
+                .company-hero-content {
+                    z-index: 2;
+                    position: relative;
+                }
+            }
+
+            /* General mobile optimizations for index page */
+            @media (max-width: 768px) {
+                :root {
+                    --container-padding: 12px;
+                    --header-height: 60px;
+                }
+
+                body {
+                    font-size: 0.95rem;
+                }
+
+                .container {
+                    padding: 0 var(--container-padding);
+                }
+
+                .navbar {
+                    height: var(--header-height);
+                }
+
+                .company-hero {
+                    /* Use the safe `--vh` unit on mobile (set by JS) and
+                       `svh` where supported to reliably cover the viewport */
+                    min-height: calc(var(--vh, 1vh) * 100);
+                    height: 100svh;
+                    padding: 1.25rem 0;
+                }
+
+                .company-hero .hero-main-text {
+                    font-size: clamp(1.2rem, 6vw, 2rem);
+                    padding: 0 0.5rem;
+                    line-height: 1.18;
+                }
+
+                .company-hero .hero-main-text .hero-accent {
+                    font-size: inherit;
+                }
+
+                .hero-buttons {
+                    gap: 0.5rem;
+                }
+
+                /* Center hero content horizontally and vertically on mobile */
+                .company-hero-content {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                }
+
+                .hero-main-text {
+                    margin: 0 auto;
+                    width: 100%;
+                    max-width: 720px;
+                }
+
+                .hero-buttons {
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                }
+
+                .what-sets-us-apart,
+                .properties-showcase,
+                .services,
+                .contact-simplified,
+                .partners-section {
+                    padding: 2rem 0;
+                }
+
+                .what-sets-us-apart h2 {
+                    font-size: 1.5rem;
+                    margin-bottom: 1rem;
+                }
+
+                .apart-grid {
+                    gap: 0.75rem;
+                }
+
+                .footer {
+                    padding: 1.5rem 0;
+                }
+
+                .btn-hero {
+                    width: 100%;
+                }
+            }
+
+                </style>
+                <script>
+                // Mobile viewport unit fix: set --vh to 1% of the viewport height
+                // so `calc(var(--vh) * 100)` equals the visible viewport height on mobile.
+                (function() {
+                    function setVh() {
+                        document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
+                    }
+                    setVh();
+                    window.addEventListener('resize', setVh);
+                    window.addEventListener('orientationchange', setVh);
+                })();
+                </script>
 </head>
 
 <body>
@@ -389,6 +638,7 @@
 
     <!-- Company Hero Section -->
     <section class="company-hero">
+        <img src="assets/images/b7.jpg" alt="Proma Africa hero" class="company-hero-fallback" loading="lazy" decoding="async">
         <div class="company-hero-background"></div>
         <div class="company-hero-content">
             <h1 class="hero-main-text" data-aos="fade-up">
@@ -406,6 +656,7 @@
             </div>
         </div>
     </section>
+
 
 
 

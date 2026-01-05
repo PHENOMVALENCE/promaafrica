@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS inquiries (
     message TEXT NOT NULL,
     status ENUM('new', 'read', 'replied') DEFAULT 'new',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (property_id) REFERENCES properties(id) ON DELETE SET NULL
 );
 
